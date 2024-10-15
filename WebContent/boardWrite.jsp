@@ -133,7 +133,7 @@
                 <label for="uploadFile">파일 업로드</label>
                 <input type="file" class="form-control-file" id="uploadFile" name="uploadFile">
             </div>
-            <div class="g-recaptcha" data-sitekey="6LdbQVMqAAAAADYYVCPY80yQ5Kt-Q8hqiBUy8ubR"></div> <!--리캡챠 -->
+            <div class="g-recaptcha" data-sitekey="6LfesWEqAAAAALVkNSEMNYjBLHDgKPlBARLzdGLA"></div> <!--리캡챠 -->
             <div class="btn-container">
                 <button type="submit" class="btn ganjibutton" style="flex: 1;">작성 완료</button>
                 <a href="boardList.jsp" class="btn ganjibutton" style="flex: 1;">목록으로</a>

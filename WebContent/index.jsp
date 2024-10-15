@@ -81,6 +81,12 @@
 
 <jsp:include page="header.jsp" />
 
+<% String alertMessage = (String) request.getAttribute("alertMessage"); %>
+<% if (alertMessage != null) { %>
+    <script>alert('<%= alertMessage %>')</script>
+<% } %>
+
+
 <div class="text-center" style="color: black; font-size: 14px; font-weight: bold;"><%=message%></div>
 <div class="text-center" id="message" style="color: black; font-size: 14px; font-weight: bold;"></div>
 

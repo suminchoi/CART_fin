@@ -17,9 +17,9 @@
 	            return false;
 	        }
 	
-	     	// csm_이메일 검증: 최대 20자
+	     	// csm_이메일 검증: 최대 255자
 	        var email = document.getElementById("email").value;
-	        if (email.length > 20) {
+	        if (email.length > 255) {
 	            alert("check your email!");
 	            return false;
 	        }
