@@ -47,7 +47,7 @@
 		<div class="table-responsive ">
 			<table class="table table-hover table-sm">
 				<thead
-					style="background-color: black; color: white; font-size: 14px; font-weight: bold;">
+					style="background-color: #90EE90; color: white; font-size: 14px; font-weight: bold;">
 					<tr>
 						<th>Picture</th>
 						<th>ProductName</th>

@@ -18,37 +18,37 @@ import com.shashi.service.impl.OrderServiceImpl;
  */
 @WebServlet("/OrderServlet")
 public class OrderServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+   protected void doGet(HttpServletRequest request, HttpServletResponse response)
+         throws ServletException, IOException {
 
-		HttpSession session = request.getSession();
-		String userName = (String) session.getAttribute("username");
-		String password = (String) session.getAttribute("password");
+      HttpSession session = request.getSession();
+      String userName = (String) session.getAttribute("username");
+      String password = (String) session.getAttribute("password");
 
-		if (userName == null || password == null) {
+      if (userName == null || password == null) {
 
-			response.sendRedirect("login.jsp?message=Session Expired, Login Again!!");
-		}
+         response.sendRedirect("login.jsp?message=Session Expired, Login Again!!");
+      }
 
-		double paidAmount = Double.parseDouble(request.getParameter("amount"));
-		String status = new OrderServiceImpl().paymentSuccess(userName, paidAmount);
+      double paidAmount = Double.parseDouble(request.getParameter("amount"));
+      String status = new OrderServiceImpl().paymentSuccess(userName, paidAmount);
 
-		PrintWriter pw = response.getWriter();
-		response.setContentType("text/html");
+      PrintWriter pw = response.getWriter();
+      response.setContentType("text/html");
 
-		RequestDispatcher rd = request.getRequestDispatcher("orderDetails.jsp");
+      RequestDispatcher rd = request.getRequestDispatcher("orderDetails.jsp");
 
-		rd.include(request, response);
+      rd.include(request, response);
 
-		pw.println("<script>document.getElementById('message').innerHTML='" + status + "'</script>");
-	}
+      pw.println("<script>document.getElementById('message').innerHTML='" + status + "'</script>");
+   }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+   protected void doPost(HttpServletRequest request, HttpServletResponse response)
+         throws ServletException, IOException {
 
-		doGet(request, response);
-	}
+      doGet(request, response);
+   }
 
 }

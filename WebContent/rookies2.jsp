@@ -9,18 +9,29 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <!-- CryptoJS AES 암호화 라이브러리 추가 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script> <!-- 리캡챠 라이브러리 로드 -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     
     <script>
         function encryptCredentials() {
             var username = document.getElementById('username').value;
             var password = document.getElementById('password').value;
             var key = CryptoJS.enc.Utf8.parse('rookies-key12345'); // 대칭키, 서버와 동일하게 설정
-            var encryptedUsername = CryptoJS.AES.encrypt(username, key, { mode: CryptoJS.mode.ECB }).toString();
-            var encryptedPassword = CryptoJS.AES.encrypt(password, key, { mode: CryptoJS.mode.ECB }).toString();
-            
-            document.getElementById('username').value = encryptedUsername;
-            document.getElementById('password').value = encryptedPassword;
+            var encryptedUsername = CryptoJS.AES.encrypt(username, key, {
+                mode: CryptoJS.mode.ECB,
+                padding: CryptoJS.pad.Pkcs7 // 패딩 방식을 명시적으로 추가
+            }).toString();
+            var encryptedPassword = CryptoJS.AES.encrypt(password, key, {
+                mode: CryptoJS.mode.ECB,
+                padding: CryptoJS.pad.Pkcs7 // 패딩 방식을 명시적으로 추가
+            }).toString();
+         // 암호화된 값을 숨겨진 필드에 저장
+            document.getElementById('encryptedUsername').value = encryptedUsername;
+            document.getElementById('encryptedPassword').value = encryptedPassword;
+
+            // 입력 필드 값은 그대로 남겨두기
+            // form 데이터를 암호화된 hidden 필드로만 보내기 위해 input 필드 비활성화
+            document.getElementById('username').disabled = true;
+            document.getElementById('password').disabled = true;
         }
     </script>
     
@@ -75,20 +86,24 @@
                     <div class="col-md-12 form-group">
                         <label for="username">Username</label>
                         <input type="text" placeholder="Enter Username" name="username" class="form-control" id="username" required>
+                       <input type="hidden" id="encryptedUsername" name="encryptedUsername">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 form-group">
                         <label for="password">Password</label>
                         <input type="password" placeholder="Enter Password" name="password" class="form-control" id="password" required>
+                       <input type="hidden" id="encryptedPassword" name="encryptedPassword">
                     </div>
+                    
                 </div>
-                <div class="row">
+
+                <div class="row" style="display: none;">
                     <div class="col-md-12 form-group">
                         <label for="userrole">Login As</label>
                         <p id="userrole" class="form-control">ADMIN</p>
-						<input type="hidden" name="usertype" value="admin">
-                    </div>
+                  <input type="hidden" name="usertype" value="admin">
+                   </div>
                 </div>
                 <div class="g-recaptcha" data-sitekey="6LdbQVMqAAAAADYYVCPY80yQ5Kt-Q8hqiBUy8ubR"></div> <!--리캡챠 -->
                 <div class="row">

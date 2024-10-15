@@ -70,7 +70,7 @@
 
 		<table class="table table-hover">
 			<thead
-				style="background-color: #186188; color: white; font-size: 16px; font-weight: bold;">
+				style="background-color: #90EE90; color: white; font-size: 16px; font-weight: bold;">
 				<tr>
 					<th>Picture</th>
 					<th>Products</th>

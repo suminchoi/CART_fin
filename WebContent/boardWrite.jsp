@@ -115,7 +115,7 @@
             }
         %>
         
-        <form action="boardWriteProcess.jsp" method="post" enctype="multipart/form-data">
+        <form action="boardWriteProcess.jsp" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
             <div class="form-group">
                 <label for="title">제목</label>
                 <input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력하세요" required>
