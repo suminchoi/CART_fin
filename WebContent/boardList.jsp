@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ page import="java.sql.*, java.util.*" %>
+<%@ page import="java.sql.*, java.util.*, org.apache.commons.text.StringEscapeUtils" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -175,13 +175,14 @@
     <div class="container mt-4 board-content">
         <form class="search-section" method="get" action="boardList.jsp">
             <div class="search-inputs">
-                <input type="search" name="searchKeyword" placeholder="검색어 입력" class="form-control">
+               <input type="search" name="searchKeyword" placeholder="검색어 입력" class="form-control">
                 <select name="searchType" class="form-control">
-                    <option value="title">제목</option>
-                    <option value="author">작성자</option>
+                    <option value="title" <%= "title".equals(request.getParameter("searchType")) ? "selected" : "" %>>제목</option>
+                    <option value="author" <%= "author".equals(request.getParameter("searchType")) ? "selected" : "" %>>작성자</option>
                 </select>
-                <input type="date" name="startDate" class="form-control" placeholder="시작 날짜">
-                <input type="date" name="endDate" class="form-control" placeholder="종료 날짜">
+                <input type="date" name="startDate" value="<%= StringEscapeUtils.escapeHtml4(request.getParameter("startDate")) %>" class="form-control" placeholder="시작 날짜">
+                <input type="date" name="endDate" value="<%= StringEscapeUtils.escapeHtml4(request.getParameter("endDate")) %>" class="form-control" placeholder="종료 날짜">
+>
             </div>
             <button type="submit" class="btn btn-search"><span>검색</span></button>
             <a href="userHome.jsp" class="btn btn-main"><span>메인 홈</span></a>
@@ -215,6 +216,9 @@
 		    if (searchKeyword != null && !searchKeyword.isEmpty()) {
 		        sql += " AND " + searchType + " LIKE ?";
 		        params.add("%" + searchKeyword + "%");
+		    }
+		    if (searchKeyword == null || searchKeyword.trim().isEmpty()) {
+		        searchKeyword = ""; // null이나 빈 값일 경우 빈 문자열로 초기화
 		    }
 		
 		    if (startDate != null && !startDate.isEmpty() && endDate != null && !endDate.isEmpty()) {
