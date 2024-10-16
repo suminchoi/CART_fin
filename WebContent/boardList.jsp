@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ page import="java.sql.*, java.util.*, org.apache.commons.text.StringEscapeUtils" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -182,7 +181,6 @@
                 </select>
                 <input type="date" name="startDate" value="<%= StringEscapeUtils.escapeHtml4(request.getParameter("startDate")) %>" class="form-control" placeholder="시작 날짜">
                 <input type="date" name="endDate" value="<%= StringEscapeUtils.escapeHtml4(request.getParameter("endDate")) %>" class="form-control" placeholder="종료 날짜">
->
             </div>
             <button type="submit" class="btn btn-search"><span>검색</span></button>
             <a href="userHome.jsp" class="btn btn-main"><span>메인 홈</span></a>
