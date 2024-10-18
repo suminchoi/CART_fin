@@ -39,12 +39,6 @@
             margin-bottom: 20px;
         }
     </style>
-    <script>
-        // 페이지 로드 시 alert을 표시
-        window.onload = function() {
-            alert("에러가 났네요. 좀 있다가 다시 하세요.");
-        }
-    </script>
 </head>
 <body>
     <div class="error-container">
